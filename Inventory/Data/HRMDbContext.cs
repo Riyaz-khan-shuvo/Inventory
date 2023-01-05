@@ -10,5 +10,6 @@ namespace Inventory.Data
 
         }
         public DbSet<Employee> Employees { get; set; }
+        public object Emplolyees { get; internal set; }
     }
 }

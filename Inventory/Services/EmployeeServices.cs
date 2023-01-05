@@ -11,27 +11,28 @@ namespace Inventory.Services
         {
             _context = context;
         }
-        public async Task<Employee> Create(Employee employee)
+        public async Task<Employee> Create(Employee emplolyee)
         {
-            _context.Employees.Add(employee);
+            _context.Employees.Add(emplolyee);
             await _context.SaveChangesAsync();
-            return employee;
+            return emplolyee;
         }
 
         public async Task Delete(int id)
         {
             var emp = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(emp);
-
-        }
-        public async Task<IEnumerable<Employee>> GetAll()
-        {
-            return await _context.Employees.ToListAsync();
+            _context.Remove(emp);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Employee> GetById(int id)
         {
             return await _context.Employees.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Employee>> GetAll()
+        {
+            return await _context.Employees.ToListAsync();
         }
 
         public async Task Update(Employee employee)
